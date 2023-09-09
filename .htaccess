@@ -1,0 +1,15 @@
+#кодировка веб сервера
+AddDefaultCharset utf-8
+#запрет просмотра содержимого директорий
+Options All -Indexes
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+#перенаправление запросов On
+RewriteEngine On
+#REQUEST_FILENAME - полный путь к вебстранице на сервере
+# если нет такого файла
+RewriteCond %{REQUEST_FILENAME} !-f
+# если нет такой директории
+RewriteCond %{REQUEST_FILENAME} !-d
+# если нет файла или папки делаем перенаправление на файл в корне нашего проекта index.php
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
