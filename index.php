@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+// подключить класс из указанного пространства имен
+use market\core\Router;
+ 
 require_once 'vendor/autoload.php';
 // конфигурация отслеживания ошибок
 require_once 'app/errors/logger.php';
