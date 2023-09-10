@@ -1,4 +1,10 @@
 {
+    "autoload": {
+        "psr-4": {
+            "market\\":"app2",
+            "yandex\\":"app"
+        }
+    },
     "require-dev": {
         "symfony/var-dumper": "^6.3"
     }

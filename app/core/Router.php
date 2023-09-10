@@ -25,4 +25,25 @@ class Router {
         self::$pages[$page] = ['controller' => $controller,'action' => $action];
     }
 
+
+    public static function run():void
+    {
+        $uri = rtrim($_SERVER['REQUEST_URI'], '/');
+        $uri = ( empty($uri) ) ? '/' : $uri;
+        $uri = explode('?', $uri);
+        $uri = $uri[0];
+        dump(self::$pages);
+         // перебираем все ссылки которые были добавлены в файле web.php
+        foreach(self::$pages as $page => $params)
+        {
+            // проверяем есть ли такой url в нашем маршрутизаторе web.php
+            if ($page === $uri)
+            {
+                $controller = self::$pages[$page]['controller'];
+                $action = self::$pages[$page]['action'];
+            }
+        } 
+    }
+
 }
+

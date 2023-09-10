@@ -13,3 +13,5 @@ require_once 'app/core/Router.php';
 // список страниц!!!
 require_once 'app/config/web.php';
 
+
+Router::run();
