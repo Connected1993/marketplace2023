@@ -4,7 +4,10 @@
 namespace market\core;
 
 
-class Model
+class Model extends Connection
 {
+  public function __construct()
+  {
 
+  }
 }
