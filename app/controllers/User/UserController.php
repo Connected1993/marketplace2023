@@ -4,13 +4,24 @@ declare(strict_types=1);
 
 namespace market\controllers\User;
 
-class UserController {
-    public function registration()
+use market\core\Controller;
+
+class UserController extends Controller {
+
+//    public function __construct()
+//    {
+//      echo 'Я конструктор  класса '.__CLASS__.PHP_EOL;
+//      parent::__construct();
+//    }
+
+  public function registration()
     {
-        echo 'типо регистрируемся';
+        dump($this->params);
+        echo PHP_EOL.'<br>типо регистрируемся';
     }
     public function authorization()
     {
         echo 'типо авторизуемся';
     }
+
 }

@@ -56,7 +56,7 @@ class Router {
                     // если есть такой метод
                     if (method_exists($path,$action))
                     {
-                        $controller = new $path();
+                        $controller = new $path(self::$pages[$page]);
                         $controller->$action();
                         exit;
                     }
