@@ -14,38 +14,45 @@ abstract class Controller
 
     protected ?int $role = 0;
 
+    public function index()
+    {
+      echo 'базовый индекс!';
+
+    }
+
     public function __construct(public array $params)
     {
       // создаем обьект вида(интрейфейс)
-        //$this->view = new View();
+      $this->view = new View($this->params);
       // запуск загрузки модели для работы с БД
       $this->model = $this->loaderModel();
+      $this->params['controller'] = ucfirst(mb_strtolower($this->params['controller']));
+      $this->params['action'] = ucfirst(mb_strtolower($this->params['action']));
     }
 
     private function loaderModel(): ?Model
     {
-      // преобразуем в нижний регистр
-      $model = mb_strtolower($this->params['controller']);
-      // делаем первый символ в верхнем регистре
-      $model = ucfirst($model);
+      $model = $this->params['controller'];
+      $action = $this->params['action'];
+      $method = isset($this->params['method']);
 
-      $action = mb_strtolower($this->params['action']);
-      $action = ucfirst($action);
 
-      $path = "market\models\\" .$model. "\\". $action ."Model";
-
-      // если существует класс такой модели
-      if (class_exists($path))
+      if (!$method)
       {
-        return new $path();
-      }
-      else
-      {
-        dump("Модель $action не найдена!");
-        exit;
+
+        $path = "market\models\\" . $model . "\\" . $action . "Model";
+        // если существует класс такой модели
+        if (class_exists($path)) {
+          return new $path();
+        } else {
+          dump("Модель $action не найдена!");
+          exit;
+        }
+
       }
 
-      return null;
+      return new Model();
+
     }
 
 }

@@ -27,6 +27,11 @@ class Router {
         self::$pages[$page] = ['controller' => $controller,'action' => $action];
     }
 
+    public static function addRequest(string $page, string $controller, string $action = 'index',string $method = 'GET'): void
+    {
+      self::$pages[$page] = ['controller' => $controller,'action' => $action,'method'=>$method];
+    }
+
     public static function redirect($url)
     {
         header("Location: ".$_SERVER['REQUEST_SCHEME']."://".HOST."/$url",true,301);
