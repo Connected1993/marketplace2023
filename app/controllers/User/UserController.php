@@ -20,7 +20,7 @@ class UserController extends Controller {
     echo 'это index запущен был по url '.$_SERVER['REQUEST_URI'];
   }
 
-  public function registration()
+  public function create()
   {
     dump($_POST);
     //  $this->model->reg()
@@ -28,7 +28,7 @@ class UserController extends Controller {
     // to do redirect
   }
 
-  public function registrationView()
+  public function registration()
     {
         $this->view->AddCss('registration/registration.css');
         $this->view->AddCss('registration/animation.css');
