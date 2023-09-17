@@ -47,6 +47,22 @@ class View
     }
   }
 
+  public static function responceJsonSuccess(array $data, string $method): string
+  {
+    $method = explode('\\', $method);
+    $method = end($method);
+    echo json_encode(['success' => true,'result' => $data,'method' => $method], JSON_UNESCAPED_UNICODE);
+    exit;
+  }
+
+  public static function responceJsonFailed(array $data, string $method): string
+  {
+    $method = explode('\\', $method);
+    $method = end($method);
+    echo json_encode(['success' => false,'result' => $data,'method' => $method], JSON_UNESCAPED_UNICODE);
+    exit;
+  }
+
   public function render(array $data = [])
   {
 

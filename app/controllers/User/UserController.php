@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace market\controllers\User;
 
 use market\core\Controller;
+use market\core\View;
 
 class UserController extends Controller {
 
@@ -22,8 +23,25 @@ class UserController extends Controller {
 
   public function create()
   {
-    dump($_POST);
-    //  $this->model->reg()
+    if (isset($_POST['action']) && $_POST['action'] === 'registration')
+    {
+      $pass1 = isset($_POST['password'])? $_POST['password'] : null ;
+      $pass2 = isset($_POST['passwordConfirm'])? $_POST['passwordConfirm'] : null ;
+      $login = isset($_POST['login'])? $_POST['login'] : null;
+      $email = isset($_POST['email'])? $_POST['email'] : null;
+      $phone = isset($_POST['phone'])? $_POST['phone'] : null;
+
+      if ($pass1 != $pass2 ) View::responceJsonFailed(['пароли не совпадают'],'create');
+      if ( !$login || !$email || !$phone ) View::responceJsonFailed(['не все поля заполнены'],'create');
+
+//      хешируем пароль
+      $hash = md5($pass1);
+
+      $this->model->create($hash);
+    }
+
+
+
     echo 'Поздравляем вы успешно зарегистрировались!';
     // to do redirect
   }
@@ -34,7 +52,7 @@ class UserController extends Controller {
         $this->view->AddCss('registration/animation.css');
         //$this->view->AddJs('registration/send.js');
         //рисуем интерфейс
-        $this->view->render(['name'=>'Alex','city'=>'Moscow']);
+        $this->view->render();
     }
 
     public function authorization()

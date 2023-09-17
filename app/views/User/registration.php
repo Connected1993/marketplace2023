@@ -1,26 +1,20 @@
 <?php
-    dump($data);
+    //dump($data);
 ?>
 <main>
-    <form action="/create" class="regForm regForm_flex" method="POST">
-      <span class="regForm__head">Регистрация</span>
-      <div class="regForm__wrapper">
-        <div class="regForm__content">
-          <span class="regForm__span">Логин: </span>
-          <input name="login" class="regForm__input" type="text" required>
+    <form  id="registration"  action="/create" method="POST" class="col-10 col-sm-4 m-auto mt-5">
+        <input name="login" class="form-control form-control-sm mb-1" type="text" placeholder="login">
+        <input name="password" class="form-control form-control-sm mb-1" type="password" placeholder="password">
+        <input name="passwordConfirm" class="form-control form-control-sm mb-1" type="password" placeholder="confirm password">
+        <input name="phone" class="form-control form-control-sm mb-1" type="tel">
+        <input name="email" class="form-control form-control-sm mb-1" type="email" placeholder="email">
+        <input name="action" class="form-control form-control-sm mb-1" value="registration" hidden>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+            <label class="form-check-label" for="flexCheckIndeterminate">
+                Запомнить пароль
+            </label>
         </div>
-        <div class="regForm__content">
-          <div class="regForm__content__pswd">
-            <span class="regForm__span">Пароль: </span>
-            <input name="password1" id="inputPswd1" class="regForm__input inputPswd" type="password" required>
-          </div>
-          <div class="regForm__content__pswd">
-            <span class="regForm__span">Повторите пароль: </span>
-            <input name="password2" id="inputPswd2" class="regForm__input inputPswd" type="password" required>
-          </div>
-        </div>
-        <button class="regForm__submit regForm__submit_txt" type="submit">Зарегистрироваться</button>
-        <input name="action" class="d-none" value="registration" type="text">
-      </div>
+        <input data="reg" class="form-control form-control-sm mb-1 btn btn-outline-success" type="submit" value="Зарегистрироваться">
     </form>
 </main>

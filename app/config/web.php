@@ -12,7 +12,7 @@ Router::addUrl('/admin','Admin','banned');
 Router::addUrl('/registration','User','registration');
 Router::addUrl('/authorization','User','authorization');
 Router::addUrl('/catalog','Product','catalog');
+Router::addUrl('/create','User','create');
 
 
-Router::addRequest('/create','User','create','POST');
 
