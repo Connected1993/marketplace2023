@@ -46,6 +46,12 @@ class UserController extends Controller {
     // to do redirect
   }
 
+  public function uploads()
+  {
+    dump($this->variables);
+    echo 'HERE';
+  }
+
   public function registration()
     {
         $this->view->AddCss('registration/registration.css');

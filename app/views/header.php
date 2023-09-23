@@ -6,8 +6,8 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <link rel="stylesheet" href="/app/public/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/app/public/css/header/header.css">
+  <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/app/public/css/header/header.css">
   <?= $this->IMPORT_MODULE_CSS ?>
 </head>
 <body>
