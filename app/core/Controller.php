@@ -28,6 +28,13 @@ abstract class Controller
       $this->model = $this->loaderModel();
       $this->params['controller'] = ucfirst(mb_strtolower($this->params['controller']));
       $this->params['action'] = ucfirst(mb_strtolower($this->params['action']));
+
+      foreach ($params['placeholder'] as $key => $param) {
+        $param = preg_replace('/{|}/', '', $param);
+        preg_match("/$param\/[0-9]+/", $_SERVER['REQUEST_URI'], $id);
+        $this->variables[$param] = preg_replace('/[^0-9]/', '', current($id));
+      }
+
     }
 
     private function loaderModel(): ?Model

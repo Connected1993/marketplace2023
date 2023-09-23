@@ -7,6 +7,8 @@ class View
 {
   private array $modules_css = [];
   private array $modules_js = [];
+  private array $modules_remote_css = [];
+  private array $modules_remote_js = [];
   public static string $path;
   public string $IMPORT_MODULE_CSS = '';
   public string $IMPORT_MODULE_JS = '';
@@ -24,22 +26,38 @@ class View
     self::$path = ROOT . '/app/views';
   }
 
-  public function AddJS(string $path)
+  public function AddJS(string $path, bool $remote = false)
   {
-    // добавляем в массив путь к скрипту js/css....
-    $this->modules_js[] = $path;
+    if ($remote) {
+      $this->modules_remote_js[] = $path;
+    } else {
+      // добавляем в массив путь к скрипту js
+      $this->modules_js[] = $path;
+    }
   }
 
-  public function AddCss(string $path)
+  public function AddCss(string $path, bool $remote = false)
   {
-    // добавляем в массив путь к скрипту js/css....
-    $this->modules_css[] = $path;
+    if ($remote) {
+      $this->modules_remote_css[] = $path;
+    } else {
+      // добавляем в массив путь к скрипту css
+      $this->modules_css[] = $path;
+    }
   }
 
   private function imports(): void
   {
+    foreach ($this->modules_remote_css as $link) {
+      $this->IMPORT_MODULE_CSS .= "<link rel='stylesheet' href='$link'>" . PHP_EOL;
+    }
+
     foreach ($this->modules_css as $link) {
       $this->IMPORT_MODULE_CSS .= "<link rel='stylesheet' href='/app/public/css/$link'>" . PHP_EOL;
+    }
+
+    foreach ($this->modules_remote_js as $link) {
+      $this->IMPORT_MODULE_JS .= "<script defer src='$link'></script>" . PHP_EOL;
     }
 
     foreach ($this->modules_js as $link) {
