@@ -7,7 +7,17 @@ declare(strict_types=1);
     <div class="mt-2 col-11 mx-auto">
         <form id="product" method="POST">
             <input name="name" class="form-control form-control-sm mb-1" type="text" placeholder="наименование товара">
-            <input name="price" class="form-control form-control-sm mb-1" type="number" placeholder="цена">
+            <input name="articul" class="form-control form-control-sm mb-1" type="number" placeholder="артикул">
+            <input name="price" class="form-control form-control-sm mb-1" type="number" placeholder="цена" min="0">
+            <input name="count" class="form-control form-control-sm mb-1" type="number" placeholder="наличие шт"
+                   min="0">
+            <select name="category" class="form-control form-control-sm mb-1">
+                <option selected disabled>Категория</option>
+                <option value="1">Смартфоны</option>
+                <option value="2">Компьютеры</option>
+                <option value="3">Нотбуки</option>
+                <option value="4">Планшеты</option>
+            </select>
             <textarea name="description" class="form-control form-control-sm mb-1" placeholder="описание"></textarea>
         </form>
         <label for="uploadFiles">
