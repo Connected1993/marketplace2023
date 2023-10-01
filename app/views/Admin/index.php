@@ -3,18 +3,22 @@
 declare(strict_types=1);
 
 ?>
-
-
 <main>
-
     <div class="mt-2 col-11 mx-auto">
+        <form id="product" method="POST">
+            <input name="name" class="form-control form-control-sm mb-1" type="text" placeholder="наименование товара">
+            <input name="price" class="form-control form-control-sm mb-1" type="number" placeholder="цена">
+            <textarea name="description" class="form-control form-control-sm mb-1" placeholder="описание"></textarea>
+        </form>
         <label for="uploadFiles">
             <div class="form-control" id="DRAGZONE">
                 <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                 <input type="file" id="uploadFiles" multiple="multiple" name="files[]" hidden>
             </div>
         </label>
-        <div class="mt-2 col-6 mx-auto drag__preview"></div>
+        <div class="mt-2 col-11 mx-auto drag__preview"></div>
+        <input type="submit" class="btn btn-success col-6 mx-auto d-block d-none" state="sendRequest"
+               onclick="upload()">
     </div>
 
 

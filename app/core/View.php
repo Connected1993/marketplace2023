@@ -31,8 +31,7 @@ class View
     if ($remote) {
       $this->modules_remote_js[] = $path;
     } else {
-      // добавляем в массив путь к скрипту js
-      $this->modules_js[] = $path;
+      $this->getFile($path);
     }
   }
 
@@ -41,8 +40,46 @@ class View
     if ($remote) {
       $this->modules_remote_css[] = $path;
     } else {
-      // добавляем в массив путь к скрипту css
-      $this->modules_css[] = $path;
+      $this->getFile($path);
+    }
+  }
+
+
+  private function getFile(string $path): void
+  {
+    try {
+      $old = $path;
+      // разбиваем по делиметру
+      $arr = explode('/', $path);
+      // получили имя файла
+      $fName = array_pop($arr);
+      // получаем расширения
+      $ext = explode('.', $fName);
+      $ext = end($ext);
+
+      // вернули в строку
+      $path = implode('/', $arr);
+      // получаем полный путь к файлу
+      $path = ROOT . '/app/public/' . $ext . '/' . $path . '/' . $fName;
+      // проверяем, что файл существует
+      if (file_exists($path)) {
+        // получаем время последнего изменения файла
+        $time = filemtime($path);
+        $old .= '?v=' . $time;
+        switch ($ext) {
+          case 'js':
+            $this->modules_js[] = $old;
+            break;
+          case 'css':
+            $this->modules_css[] = $old;
+            break;
+          default:
+            throw new \Exception('Недопустимый формат!');
+            break;
+        }
+      }
+    } catch (\Exception $e) {
+      //throw new \Exception('Неизвестная ошибка!');
     }
   }
 
@@ -63,6 +100,14 @@ class View
     foreach ($this->modules_js as $link) {
       $this->IMPORT_MODULE_JS .= "<script defer src='/app/public/js/$link'></script>" . PHP_EOL;
     }
+
+    /*    foreach ($this->modules_remote_js as $link) {
+          $this->IMPORT_MODULE_JS .= "<script defer type='module' src='$link'></script>" . PHP_EOL;
+        }
+
+        foreach ($this->modules_js as $link) {
+          $this->IMPORT_MODULE_JS .= "<script defer type='module' src='/app/public/js/$link'></script>" . PHP_EOL;
+        }*/
   }
 
   public static function responceJsonSuccess(array $data, string $method): string

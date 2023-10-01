@@ -14,6 +14,7 @@ class AdminController extends Controller
   {
     $this->view->AddCss('admin/drag.css');
     $this->view->AddJS('https://kit.fontawesome.com/f931fab46d.js', true);
+    $this->view->AddJS('sendRequest.js');
     $this->view->AddJS('admin/drag.js');
     $this->view->render();
   }

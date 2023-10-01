@@ -29,7 +29,6 @@ label[for="uploadFiles"] {
 
 
 .drag__preview {
-    border: 1px solid black;
     padding: 5px;
     display: flex;
     flex-wrap: wrap;
